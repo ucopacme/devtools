@@ -1,2 +1,43 @@
 ---
-# defaults file for dev-tools
+# defaults file for devtools
+
+awscli:
+  profile:
+    group: wheel
+    mode: 644
+    owner: root
+  group: root
+  home: /root
+  name: Auth
+  owner: root
+  region: us-west-2
+packages:
+  centos:
+    - python36u
+    - python36u-pip 
+    - python36u-devel
+    - python36u-setuptools
+  brew_upgrade_packages: false
+  brew_install_if_missing: false
+  brew:
+    - "bash-completion"
+    - "jq"
+    - "packer"
+    - "python3"
+  cask:
+    - "atom"
+    - "docker"
+    - "iterm2"
+
+pip:
+  requirements: requirements.txt
+python:
+  centos:
+    ver: python36u
+  venv:
+    user: root
+    home: python/venv
+    ver: python36
+repos:
+  centos:
+    - https://centos7.iuscommunity.org/ius-release.rpm
