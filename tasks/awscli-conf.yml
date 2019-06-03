@@ -1,0 +1,48 @@
+---
+- name: Copy profile.d file
+  copy:
+    src: awscli/awscli.sh
+    dest: /etc/profile.d/awscli.sh
+    owner: "{{ awscli.profile.owner }}"
+    group: "{{ awscli.profile.group }}"
+    mode: "{{ awscli.profile.mode }}"
+
+- name: setup .aws directories
+  file:
+    group: "{{ awscli.group }}"
+    mode: 0700
+    owner: "{{ awscli.owner }}"
+    path: "{{ awscli.home }}/.aws"
+    state: directory
+
+- name: setup .aws/cli directories
+  file:
+    group: "{{ awscli.group }}"
+    mode: 0700
+    owner: "{{ awscli.owner }}"
+    path: "{{ awscli.home }}/.aws/cli"
+    state: directory
+
+- name: copy aws cli alias file
+  copy:
+    src: awscli/alias
+    dest: /tmp/requirements.txt
+    dest: "{{ awscli.home }}/.aws/cli/alias"
+    owner: "{{ awscli.owner }}"
+    mode: '0644'
+
+- name: aws cli config file
+  template:
+    dest: "{{ awscli.home }}/.aws/config"
+    group: "{{ awscli.group }}"
+    mode: 0400
+    owner: "{{ awscli.owner }}"
+    src: .aws/config.j2
+
+- name: aws cli credentials file
+  template:
+    dest: "{{ awscli.home }}/.aws/credentials"
+    group: "{{ awscli.group }}"
+    mode: 0400
+    owner: "{{ awscli.owner }}"
+    src: .aws/credentials.j2

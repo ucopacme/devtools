@@ -1,0 +1,9 @@
+---
+
+- name: "install repos"
+  action: >
+    {{ ansible_pkg_mgr }} name={{ repos.centos }} state=latest update_cache=yes
+
+- name: "install packages"
+  action: >
+    {{ ansible_pkg_mgr }} name={{ packages.centos }} state=latest update_cache=yes

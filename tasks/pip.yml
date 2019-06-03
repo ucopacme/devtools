@@ -1,0 +1,17 @@
+---
+- name: Update pip package.
+  shell:
+    source "/{{ python.venv.user }}/{{ python.venv.home }}/bin/activate" && pip3 install -U pip
+      #  tags: ['pip-upgrade']
+
+- name: Copy requirements file
+  copy:
+    src: requirements.txt
+    dest: /tmp/requirements.txt
+    owner: "{{ python.venv.user }}"
+    mode: '0644'
+
+- name: Install pip package.
+  shell:
+    source "/{{ python.venv.user }}/{{ python.venv.home }}/bin/activate" && pip3 install -r /tmp/requirements.txt
+      #  tags: ['pip-upgrade']

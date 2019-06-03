@@ -1,0 +1,4 @@
+---
+- name: install xcode
+  shell: xcode-select --install
+  # when: not got_brew.stat.exists
