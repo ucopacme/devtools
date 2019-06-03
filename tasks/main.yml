@@ -1,2 +1,21 @@
 ---
-# tasks file for dev-tools
+# tasks file for devtools
+
+- name: Facts
+  setup:
+
+- name: Dump
+  delegate_to: localhost
+  run_once: true
+  copy:
+    content: "{{ hostvars[inventory_hostname] | to_nice_json }}"
+    dest: /tmp/setup-dump.json
+
+- include: "{{ansible_distribution}}_install.yml"
+  tags: ['distro-install']
+
+- include: "python-venv.yml"
+  tags: ['python-venv']
+
+- include: "pip.yml"
+  tags: ['pip']
