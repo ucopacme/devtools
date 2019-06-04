@@ -3,13 +3,13 @@
 
 awscli:
   profile:
-    group: wheel
+    group: "{{ ansible_user_gid }}"
     mode: 644
-    owner: root
-  group: root
-  home: /root
+    owner: "{{ ansible_user_id }}"
+  group: "{{ ansible_user_gid }}"
+  home: "{{ ansible_user_dir }}"
   name: Auth
-  owner: root
+  owner: "{{ ansible_user_id }}"
   region: us-west-2
 packages:
   centos:
@@ -35,9 +35,10 @@ python:
   centos:
     ver: python36u
   venv:
-    user: root
-    home: python/venv
-    ver: python36
+    user: "{{ ansible_user_id }}"
+    home: "{{ ansible_user_dir }}"
+    dir: python/.env
+    ver: python3
 repos:
   centos:
     - https://centos7.iuscommunity.org/ius-release.rpm
