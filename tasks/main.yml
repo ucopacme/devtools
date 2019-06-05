@@ -19,3 +19,9 @@
 
 - include: "pip.yml"
   tags: ['pip']
+
+- include: "atom.yml"
+  tags: ['atom']
+
+- include: "awscli-conf.yml"
+  tags: ['awscli-conf']

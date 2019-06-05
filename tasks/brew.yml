@@ -27,8 +27,11 @@
     upgrade_all: "{{ packages.brew_upgrade_packages }}"
   when: got_brew.stat.exists
 
-#- name: install cask packages
-#  homebrew_cask:
-#    name: "{{ packages.cask }}"
-#    state: "present"
-#  when: got_brew.stat.exists
+- name: install cask packages
+  homebrew_cask:
+    name: "{{ packages.cask }}"
+    state: "present"
+  # register: result
+  # failed_when: '"Error: It seems there is already an App at"' not in result.msg
+  ignore_errors: true
+  when: got_brew.stat.exists

@@ -1,0 +1,8 @@
+---
+- name: Copy atom modules file
+  copy:
+    src: atom/apm.txt
+    dest: /tmp/apm.txt
+
+- name: install atom modules
+  shell: apm install --packages-file /tmp/apm.txt
