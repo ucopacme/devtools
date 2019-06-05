@@ -1,1 +1,2 @@
 vim-mode-plus
+styri-syntax
