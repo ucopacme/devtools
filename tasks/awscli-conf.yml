@@ -6,6 +6,7 @@
     owner: "{{ awscli.profile.owner }}"
     group: "{{ awscli.profile.group }}"
     mode: "{{ awscli.profile.mode }}"
+  become: true
 
 - name: setup .aws directories
   file:
@@ -33,6 +34,7 @@
 
 - name: aws cli config file
   template:
+    backup: true
     dest: "{{ awscli.home }}/.aws/config"
     group: "{{ awscli.group }}"
     mode: 0400
@@ -41,6 +43,7 @@
 
 - name: aws cli credentials file
   template:
+    backup: true
     dest: "{{ awscli.home }}/.aws/credentials"
     group: "{{ awscli.group }}"
     mode: 0400

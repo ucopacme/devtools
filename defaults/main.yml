@@ -26,7 +26,9 @@ packages:
     - "python3"
   cask:
     - "atom"
+    - "box-drive"
     - "docker"
+    - "google-chrome"
     - "iterm2"
 
 pip:
