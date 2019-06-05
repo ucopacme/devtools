@@ -1,4 +1,5 @@
 ---
+# task to install list of atom modules
 - name: Copy atom modules file
   copy:
     src: atom/apm.txt
